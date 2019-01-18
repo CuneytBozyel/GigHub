@@ -200,14 +200,37 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901181912448_InitialModel.cs" />
+    <Compile Include="Migrations\201901181912448_InitialModel.Designer.cs">
+      <DependentUpon>201901181912448_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181932538_GigTables.cs" />
+    <Compile Include="Migrations\201901181932538_GigTables.Designer.cs">
+      <DependentUpon>201901181932538_GigTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181938458_tables.cs" />
+    <Compile Include="Migrations\201901181938458_tables.Designer.cs">
+      <DependentUpon>201901181938458_tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901181946220_insertGenres.cs" />
+    <Compile Include="Migrations\201901181946220_insertGenres.Designer.cs">
+      <DependentUpon>201901181946220_insertGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-GigHub-20190118100925.mdf" />
+    <Content Include="App_Data\aspnet-GigHub-20190118100925_log.ldf">
+      <DependentUpon>aspnet-GigHub-20190118100925.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -267,9 +290,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -282,6 +303,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901181912448_InitialModel.resx">
+      <DependentUpon>201901181912448_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181932538_GigTables.resx">
+      <DependentUpon>201901181932538_GigTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181938458_tables.resx">
+      <DependentUpon>201901181938458_tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901181946220_insertGenres.resx">
+      <DependentUpon>201901181946220_insertGenres.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
