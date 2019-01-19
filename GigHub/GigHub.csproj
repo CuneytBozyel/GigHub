@@ -225,6 +225,10 @@
     <Compile Include="Migrations\201901190940086_addColumnToGigTable1.Designer.cs">
       <DependentUpon>201901190940086_addColumnToGigTable1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901191859594_AddNameToApplicationTable.cs" />
+    <Compile Include="Migrations\201901191859594_AddNameToApplicationTable.Designer.cs">
+      <DependentUpon>201901191859594_AddNameToApplicationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -236,6 +240,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\FutureDate.cs" />
     <Compile Include="ViewModel\GigViewModel.cs" />
+    <Compile Include="ViewModel\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-GigHub-20190118100925.mdf" />
@@ -334,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901190940086_addColumnToGigTable1.resx">
       <DependentUpon>201901190940086_addColumnToGigTable1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901191859594_AddNameToApplicationTable.resx">
+      <DependentUpon>201901191859594_AddNameToApplicationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
