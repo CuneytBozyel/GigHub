@@ -217,6 +217,14 @@
     <Compile Include="Migrations\201901181946220_insertGenres.Designer.cs">
       <DependentUpon>201901181946220_insertGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901190930141_addColumnToGigTable.cs" />
+    <Compile Include="Migrations\201901190930141_addColumnToGigTable.Designer.cs">
+      <DependentUpon>201901190930141_addColumnToGigTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901190940086_addColumnToGigTable1.cs" />
+    <Compile Include="Migrations\201901190940086_addColumnToGigTable1.Designer.cs">
+      <DependentUpon>201901190940086_addColumnToGigTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -226,6 +234,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModel\FutureDate.cs" />
     <Compile Include="ViewModel\GigViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +328,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901181946220_insertGenres.resx">
       <DependentUpon>201901181946220_insertGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901190930141_addColumnToGigTable.resx">
+      <DependentUpon>201901190930141_addColumnToGigTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901190940086_addColumnToGigTable1.resx">
+      <DependentUpon>201901190940086_addColumnToGigTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
