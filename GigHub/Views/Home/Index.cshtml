@@ -1,12 +1,9 @@
 ﻿@model IEnumerable<GigHub.Models.Gig>
 @{
-    ViewBag.Title = "Mine";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
 }
 
-<h2>My Upcoming Gigs</h2>
-
-<ul class="gigs voffset4">
+<ul class="gigs">
     @foreach (var gig in Model)
     {
         <li>
@@ -20,19 +17,12 @@
             </div>
             <div class="details">
                 <span class="artist">
-                    @gig.Venue
+                    @gig.Artist.Name <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
                 </span>
                 <span class="genre">
-                   @gig.Genre.Name
+                    @gig.Genre.Name
                 </span>
-                <div class="actions">
-                    <a href="@Url.Action("Edit", "Gigs", new {id = gig.Id})">
-                        Edit
-                    </a> |
-                    <a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">
-                        Cancel
-                    </a>
-                </div>
+                <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
             </div>
         </li>
     }
@@ -40,40 +30,30 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
-            $(".js-cancel-gig").click(function(e) {
-                var link = $(e.target);
-                bootbox.dialog({
-                    message: "Are you sure you want to cancel this gig?",
-                    title: "Confirm",
-                    buttons: {
-                        no: {
-                            label: 'No',
-                            className: 'btn-default',
-                            callback: function() {
-                                bootbox.hideAll();
-                            }
-                        },
-                        yes: {
-                            label: 'Yes',
-                            className: 'btn-danger',
-                            callback: function() {
-                                $.ajax({
-                                    url: "/api/gigs/" + link.attr("data-gig-id"),
-                                    method: "DELETE"
-                                })
-                                .done(function() {
-                                    link.parents("li").fadeOut(function() {
-                                        $(this).remove();
-                                    });
-                                })
-                                .fail(function() {
-                                    bootbox.alert("Something failed!");
-                                });
-                            }
-                        }
-                    }
-                });
+        $(document).ready(function () {
+            $(".js-toggle-attendance").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
+                    .done(function () {
+                        button
+                            .removeClass("btn-default")
+                            .addClass("btn-info")
+                            .text("Going");
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+            });
+
+            $(".js-toggle-follow").click(function (e) {
+                var button = $(e.target);
+                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                    .done(function () {
+                        button.text("Following");
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });
             });
         });
     </script>
