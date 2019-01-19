@@ -7,21 +7,24 @@
 @using (@Html.BeginForm("Create", "Gigs"))
 {
     @Html.AntiForgeryToken()
+    <p class="alert alert-info">
+        All Field are <strong>Required.</strong>
+    </p>
     <div class="form-group>
         @Html.LabelFor(m => m.Venue)
-        @Html.TextBoxFor(m => m.Venue, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Venue, new { @class = "form-control", autofocus= "autofocus" })
         @Html.ValidationMessageFor(m => m.Venue)
     </div>
 
     <div class="form-group>
         @Html.LabelFor(m => m.Date)
-        @Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Date, new { @class = "form-control" ,placeholder="eg 12 01 2019"})
         @Html.ValidationMessageFor(m => m.Date)
 
     </div>
     <div class="form-group>
         @Html.LabelFor(m => m.Time)
-        @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Time, new { @class = "form-control" , placeholder = "eg 20:00" })
         @Html.ValidationMessageFor(m => m.Time)
 
     </div>
