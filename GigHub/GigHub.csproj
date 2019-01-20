@@ -260,9 +260,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModel\FutureDate.cs" />
+    <Compile Include="ViewModel\GigFormViewModel.cs" />
     <Compile Include="ViewModel\GigViewModel.cs" />
-    <Compile Include="ViewModel\HomeViewModel.cs" />
+    <Compile Include="ViewModel\GigsViewModel.cs" />
     <Compile Include="ViewModel\RegisterViewModel.cs" />
+    <Compile Include="ViewModel\ValidTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-GigHub-20190118100925.mdf" />
@@ -329,6 +331,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Gigs\Create.cshtml" />
     <Content Include="Views\Gigs\Attending.cshtml" />
+    <Content Include="Views\Shared\Gigs.cshtml" />
+    <Content Include="Views\Gigs\Mine.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Attendances\" />

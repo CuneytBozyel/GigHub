@@ -1,6 +1,7 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModel;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -17,35 +18,42 @@ namespace GigHub.Controllers
             _context = new ApplicationDbContext();
         }
 
+        [Authorize]
         public ActionResult Attending()
         {
-            var UserId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
             var gigs = _context.Attendances
-                .Where(a => a.AttendeeId
-                == UserId)
+                .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
-                .Include(g => g.Artist)
+                .Include(g => g.Genre)
                 .ToList();
 
-
-            var model = new HomeViewModel
+            var viewModel = new GigsViewModel()
             {
-                upComingGigs =gigs,
-                ShowAction = User.Identity.IsAuthenticated,
+                UpComingGigs = gigs,
+                ShowActions = User.Identity.IsAuthenticated,
+                Heading = "Gigs I'm Attending"
             };
-            return View(model);
-        }
-        // GET: Gigs
-        public ActionResult Index()
-        {
-            return View();
+
+            return View("Gigs", viewModel);
         }
 
         [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs
+                .Where(a => a.ArtistId == userId && a.DateTime>= DateTime.Now)
+                .Include(g => g.Genre)
+                .ToList();
+
+            return View(gigs);
+        }
+        [Authorize]
         public ActionResult Create()
         {
-            var viewModel = new GigViewModel
+            var viewModel = new GigFormViewModel
             {
                 Genres = _context.Genres.ToList()
             };
@@ -56,28 +64,26 @@ namespace GigHub.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(GigViewModel model)
+        public ActionResult Create(GigFormViewModel viewModel)
         {
-
             if (!ModelState.IsValid)
             {
-                model.Genres = _context.Genres.ToList();
-                return View("Create", model);
-
+                viewModel.Genres = _context.Genres.ToList();
+                return View("Create", viewModel);
             }
 
-            var gig = new Gig()
+            var gig = new Gig
             {
                 ArtistId = User.Identity.GetUserId(),
-                DateTime = model.GetDateTime(),
-                GenreId = model.Genre,
-                Venue = model.Venue,
+                DateTime = viewModel.GetDateTime(),
+                GenreId = viewModel.Genre,
+                Venue = viewModel.Venue
             };
 
             _context.Gigs.Add(gig);
             _context.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Gigs");
         }
     }
 }
